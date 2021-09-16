@@ -1,0 +1,37 @@
+extends base
+
+block content
+  .ui.placeholder.segment
+    .ui.center.aligned.basic.segment
+      .ui.icon.header
+        i.envelope.open.icon
+        | Fortune Cookie Today
+    .ui.segments
+      .ui.left.aligned.basic.segment
+        i.large.grey.left.quote.icon
+      .ui.center.aligned.basic.segment
+        .ui.huge.header= quote.content
+      .ui.right.aligned.basic.segment
+        i.large.grey.right.quote.icon
+      .ui.right.aligned.secondary.segment
+        .ui.label
+          i.user.icon
+          if quote.author
+            span= quote.author
+          else
+            span Anonymous
+    .ui.basic.segment
+      .ui.horizontal.divider How's that?
+      .ui.fluid.large.labeled.buttons
+        .ui.positive.button
+          i.thumbs.up.icon
+          | Like
+        .or
+        .ui.button
+          i.thumbs.down.icon
+          | Dislike
+  a.ui.right.floated.basic.button(tabindex=0 href=url_for('logout'))
+    i.logout.icon
+    | Logout
+
+// vim: set ts=2 sw=2 et:

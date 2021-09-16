@@ -1,0 +1,12 @@
+body {
+  background-color: hsl(0, 0%, 85%);
+}
+
+body > .grid {
+  height: 100%;
+}
+
+.column {
+  max-width: 450px;
+  margin: 0 20px;
+}
