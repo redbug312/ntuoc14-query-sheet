@@ -7,38 +7,41 @@ block content
       .content
         | 畢業紀念冊領取査詢
 
-  .ui.info.icon.message
-    i.users.icon
-    .content
-      .header 多筆同名紀錄
-      p 找到 2 筆紀錄，請確認領取同學的系所
+  if people|length > 1
+    .ui.info.icon.message
+      i.users.icon
+      .content
+        .header 多筆同名紀錄
+        p 找到 #{people|length} 筆紀錄，請確認領取同學的系所
 
-  .ui.stacked.segment
-    h4.ui.horizontal.divider.header
-      i.user.icon
-      | 個人資料
-    table.ui.large.definition.table
-      tbody
-        tr
-          td.five.wide.column 姓名
-          td redbug312
-        tr
-          td 系所
-          td 資訊工程學系
-    h4.ui.horizontal.divider.header
-      i.truck.icon
-      | 領取方式
-    table.ui.large.definition.table
-      tbody
-        tr
-          td.five.wide.column 領取方式
-          td 郵寄
-        tr
-          td 郵遞區號
-          td 98765
-        tr
-          td 郵局執據號碼
-          td 0123456789012345
-    a.ui.button(href=url_for('query')) 回前頁
+  each person in people
+    .ui.stacked.segment
+      h4.ui.horizontal.divider.header
+        i.user.icon
+        | 個人資料
+      table.ui.large.definition.table
+        tbody
+          tr
+            td.five.wide.column 姓名
+            td= person.name
+          tr
+            td 系所
+            td= person.depart
+      h4.ui.horizontal.divider.header
+        i.truck.icon
+        | 領取方式
+      table.ui.large.definition.table
+        tbody
+          tr
+            td.five.wide.column 領取方式
+            td= person.obtain
+          tr
+            td 郵遞區號
+            td= person.zipcode
+          tr
+            td 郵局執據號碼
+            td= person.receipt
+
+  a.ui.basic.button(href=url_for('query')) 回前頁
 
 // vim: set ts=2 sw=2 et:

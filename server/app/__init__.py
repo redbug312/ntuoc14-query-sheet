@@ -4,7 +4,7 @@ from werkzeug.exceptions import HTTPException
 from datetime import datetime, date, time
 import random
 
-from .models import User, db
+from .models import Person, User, db
 from .views.api import users
 from .views.signin import signin
 from .views.signup import signup
@@ -30,19 +30,15 @@ def query():
     return render_template('query.pug', title='query')
 
 
-@app.route('/query/redirect', methods=['POST'])
-def query_redirect():
+@app.route('/reply', methods=['POST'])
+def reply():
     name = request.form.get('name')
-    if name == 'foo':
+    people = Person.query.filter_by(name=name).all()
+    if not people:
         flash(name, 'error')
         return redirect(url_for('query'))
     else:
-        return redirect(url_for('reply'))
-
-
-@app.route('/reply')
-def reply():
-    return render_template('reply.pug', title='reply')
+        return render_template('reply.pug', title='reply', people=people)
 
 
 @app.errorhandler(HTTPException)
