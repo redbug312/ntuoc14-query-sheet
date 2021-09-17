@@ -1,0 +1,44 @@
+extends base
+
+block content
+  .ui.center.aligned.basic.segment
+    h1.ui.icon.header
+      i.grey.circular.graduation.cap.icon
+      .content
+        | 畢業紀念冊領取査詢
+
+  .ui.info.icon.message
+    i.users.icon
+    .content
+      .header 多筆同名紀錄
+      p 找到 2 筆紀錄，請確認領取同學的系所
+
+  .ui.stacked.segment
+    h4.ui.horizontal.divider.header
+      i.user.icon
+      | 個人資料
+    table.ui.large.definition.table
+      tbody
+        tr
+          td.five.wide.column 姓名
+          td redbug312
+        tr
+          td 系所
+          td 資訊工程學系
+    h4.ui.horizontal.divider.header
+      i.truck.icon
+      | 領取方式
+    table.ui.large.definition.table
+      tbody
+        tr
+          td.five.wide.column 領取方式
+          td 郵寄
+        tr
+          td 郵遞區號
+          td 98765
+        tr
+          td 郵局執據號碼
+          td 0123456789012345
+    a.ui.button(href=url_for('query')) 回前頁
+
+// vim: set ts=2 sw=2 et:

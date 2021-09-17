@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, make_response, redirect, url_for, current_app
+from flask import Flask, render_template, request, make_response, redirect, url_for, current_app, flash
 from flask_migrate import Migrate
 from werkzeug.exceptions import HTTPException
 from datetime import datetime, date, time
@@ -22,21 +22,27 @@ migrate = Migrate(app, db)
 
 @app.route('/')
 def index():
-    quotes = current_app.config['QUOTES']
-    token = request.cookies.get('token')
-    if token is None or User.verify_auth_token(token) is None:
-        return render_template('welcome.pug', title='Welcome')
-    today = datetime.combine(date.today(), time.min)
-    random.seed(today.timestamp())
-    quote = random.choice(quotes)
-    return render_template('home.pug', title='Home', quote=quote)
+    return redirect(url_for('query'))
 
 
-@app.route('/logout')
-def logout():
-    res = make_response(redirect(url_for('index'), code=302))
-    res.set_cookie('token', '')
-    return res
+@app.route('/query')
+def query():
+    return render_template('query.pug', title='query')
+
+
+@app.route('/query/redirect', methods=['POST'])
+def query_redirect():
+    name = request.form.get('name')
+    if name == 'foo':
+        flash(name, 'error')
+        return redirect(url_for('query'))
+    else:
+        return redirect(url_for('reply'))
+
+
+@app.route('/reply')
+def reply():
+    return render_template('reply.pug', title='reply')
 
 
 @app.errorhandler(HTTPException)

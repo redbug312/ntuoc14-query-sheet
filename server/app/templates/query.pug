@@ -1,0 +1,27 @@
+extends base
+
+block head
+  script(src=url_for('static', filename='js/query.js'))
+
+block content
+  .ui.center.aligned.basic.segment
+    h1.ui.icon.header
+      i.grey.circular.graduation.cap.icon
+      .content
+        | 畢業紀念冊領取査詢
+
+  - var messages = get_flashed_messages()
+  each message in messages
+    .ui.error.message
+      i.close.icon
+      .header 找不到此筆紀錄
+      p= message
+
+  .ui.stacked.segment
+    form.ui.form(method='POST' action=url_for('query_redirect'))
+      .field
+        label 姓名
+        input(type='text' name='name')
+      button.ui.button 送出
+
+// vim: set ts=2 sw=2 et:
