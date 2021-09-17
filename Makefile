@@ -1,10 +1,11 @@
-.PHONY: start test
-
 PARALLEL := parallel --tag --lb
 PYTHON3 ?= python3
 ENV ?= . $(shell pwd)/env/bin/activate; \
     PYTHONPATH=$(shell pwd)
 
+.PHONY: start
+start: env
+	$(ENV) make start -C server
 
 env: requirements.txt
 	$(PYTHON3) -m venv env
@@ -12,10 +13,3 @@ env: requirements.txt
 		$(ENV) $(PYTHON3) -m pip install -r $$requirement; \
 	done
 	touch $@  # update timestamp
-
-
-start: env
-	$(ENV) $(PARALLEL) make start -C ::: server broker
-
-test: env
-	$(ENV) pytest test

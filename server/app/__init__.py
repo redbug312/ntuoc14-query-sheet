@@ -1,19 +1,11 @@
-from flask import Flask, render_template, request, make_response, redirect, url_for, current_app, flash
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_migrate import Migrate
 from werkzeug.exceptions import HTTPException
-from datetime import datetime, date, time
-import random
 
-from .models import Person, User, db
-from .views.api import users
-from .views.signin import signin
-from .views.signup import signup
+from .models import Person, db
 
 app = Flask(__name__, template_folder='templates')
 app.jinja_env.add_extension('pypugjs.ext.jinja.PyPugJSExtension')
-app.register_blueprint(users)
-app.register_blueprint(signin)
-app.register_blueprint(signup)
 app.config.from_pyfile('instance/default.py')
 app.config.from_pyfile('instance/development.py', silent=True)
 
