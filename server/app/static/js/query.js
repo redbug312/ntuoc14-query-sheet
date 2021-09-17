@@ -1,3 +1,10 @@
-function openAndPush() {
-   navigator.clipboard.writeText('96462310002370891001');
-}
+$(document).ready(function(e) {
+
+  $('.ui.form').form({
+    fields: {
+      name: 'empty',
+    }
+  })
+
+});
+

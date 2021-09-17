@@ -19,7 +19,7 @@ class Person(db.Model):
     obtain = db.Column('領取方式', db.String(32), nullable=False)
     zipcode = db.Column('郵遞區號', db.String(32))
     receipt = db.Column('郵局執據號碼', db.String(32))
-    # comment = db.Column('備註', db.String(32)) # TODO
+    comment = db.Column('備註', db.String(32))
 
 
 @auth.verify_password

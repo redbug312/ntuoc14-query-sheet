@@ -12,16 +12,17 @@ block content
 
   - var messages = get_flashed_messages()
   each message in messages
-    .ui.error.message
-      i.close.icon
-      .header 找不到此筆紀錄
-      p= message
+    .ui.error.icon.message
+      i.question.icon
+      .content
+        .header 找不到此筆紀錄
+        p 請檢查姓名是否正確輸入
 
   .ui.stacked.segment
     form.ui.form(method='POST' action=url_for('reply'))
       .field
         label 姓名
-        input(type='text' name='name')
+        input(type='text' name='name' value='#{name}')
       button.ui.button 送出
 
 // vim: set ts=2 sw=2 et:

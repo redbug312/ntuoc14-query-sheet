@@ -27,7 +27,8 @@ def index():
 
 @app.route('/query')
 def query():
-    return render_template('query.pug', title='query')
+    name = request.values.get('name') or ''
+    return render_template('query.pug', title='query', name=name)
 
 
 @app.route('/reply', methods=['POST'])
@@ -36,8 +37,12 @@ def reply():
     people = Person.query.filter_by(name=name).all()
     if not people:
         flash(name, 'error')
-        return redirect(url_for('query'))
+        return redirect(url_for('query', name=name))
     else:
+        for person in people:
+            db.session.expunge(person)
+            person.receipt = (person.receipt and
+                              person.receipt.replace(" ", "").zfill(14))
         return render_template('reply.pug', title='reply', people=people)
 
 

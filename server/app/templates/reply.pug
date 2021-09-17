@@ -1,5 +1,8 @@
 extends base
 
+block head
+  script(src=url_for('static', filename='js/reply.js'))
+
 block content
   .ui.center.aligned.basic.segment
     h1.ui.icon.header
@@ -8,7 +11,7 @@ block content
         | 畢業紀念冊領取査詢
 
   if people|length > 1
-    .ui.info.icon.message
+    .ui.warning.icon.message
       i.users.icon
       .content
         .header 多筆同名紀錄
@@ -41,6 +44,19 @@ block content
           tr
             td 郵局執據號碼
             td= person.receipt
+              if person.receipt
+                i.clone.outline.link.icon(data-content='已複製'
+                                          data-position="right center"
+                                          data-clipboard-text="#{person.receipt}")
+      a(href='https://postserv.post.gov.tw/pstmail/main_mail.html'
+        target='_blank' rel='noopener')
+        i.external.icon
+        | 郵局國內快捷/掛號/包裹査詢
+      if person.comment
+        h4.ui.horizontal.divider.header
+          i.sticky.note.icon
+          | 備註
+        p= person.comment
 
   a.ui.basic.button(href=url_for('query')) 回前頁
 
