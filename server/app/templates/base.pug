@@ -16,6 +16,14 @@ head
   link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css' crossorigin='anonymous'
        integrity='sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==')
   link(rel='stylesheet' href=url_for('static', filename='css/style.css'))
+  // Favicons
+  link(rel='apple-touch-icon' sizes='180x180' href=url_for('static', filename='png/apple-touch-icon.png'))
+  link(rel='icon' type='image/png' sizes='32x32' href=url_for('static', filename='png/favicon-32x32.png'))
+  link(rel='icon' type='image/png' sizes='16x16' href=url_for('static', filename='png/favicon-16x16.png'))
+  link(rel='manifest' href=url_for('static', filename='png/site.manifest'))
+  link(rel='mask-icon' href=url_for('static', filename='png/sarafi-pinned-tab.svg') color='#5bbad5')
+  meta(name='msapplication-TileColor' content='#da532c')
+  meta(name='theme-color' content='#ffffff')
   block head
 body
   .ui.middle.aligned.center.aligned.grid
