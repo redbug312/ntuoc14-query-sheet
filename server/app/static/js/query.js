@@ -2,7 +2,7 @@ $(document).ready(function(e) {
 
   $('.ui.form').form({
     fields: {
-      name: 'empty',
+      name: ['empty', 'maxLength[50]'],
     }
   })
 
