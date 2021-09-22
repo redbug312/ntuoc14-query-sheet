@@ -7,6 +7,10 @@ ENV ?= . $(shell pwd)/env/bin/activate; \
 start: env
 	$(ENV) make start -C server
 
+.PHONY: debug
+debug: env
+	$(ENV) make debug -C server
+
 env: requirements.txt
 	$(PYTHON3) -m venv env
 	for requirement in $^; do \
