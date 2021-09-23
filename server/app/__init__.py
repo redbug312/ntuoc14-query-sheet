@@ -18,6 +18,7 @@ def index():
 
 
 @app.route('/query')
+@app.route('/reply')
 def query():
     name = request.values.get('name') or ''
     return render_template('query.pug', title='query', name=name)
