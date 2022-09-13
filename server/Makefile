@@ -1,4 +1,4 @@
-ENV ?= . ../env/bin/activate; \
+ENV ?= . ../venv/bin/activate; \
 	   PYTHONPATH=$(shell realpath ..)
 
 .PHONY: start
